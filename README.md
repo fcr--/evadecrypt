@@ -34,3 +34,37 @@ Frecuencias de los colores:
 | 350 | o (naranja) |
 | 293 | r (rojo) |
 | 4 | _ (esquina) |
+
+Probabilidad de que un caracter y el lindante (vertical u horizontalmente) sean el mismo:
+
+    awk '{for(i=1;i<=length;i++)T[i,NR]=substr($0,i,1);w=length}END{n=(w-1)*(NR-1);for(y=1;y<NR;y++)for(x=1;x<w;x++){if(T[x,y]==T[x+1,y])hc++;if(T[x,y]==T[x,y+1])vc++}printf("horizontal: %.2f%%, vertical: %.2f%%\n", hc*100/n, vc*100/n)}' back.txt
+
+> horizontal: 0.72%, vertical: 18.19%
+
+Entropy as horizontal and vertical markov processes: [[ref]](http://math.ubbcluj.ro/~tradu/TI/coverch4.pdf)
+
+    awk 'function entropy(P2, n2) { s=0;
+      for (i in CS) { ci = CS[i]
+        for (j in CS) { cj = CS[j]
+          if (!P2[cj,ci]) continue
+          s -= P[ci]/n*P2[cj,ci]/n2*log(P2[cj,ci]/n2)/log(2)
+        }
+      }
+      return s
+    }
+    { for (x = 1; x <= length; x++) {
+      T[x,NR] = c = substr($0,x,1);
+      P[c]++
+    } w=length }
+    END {
+      split("kmygcnor", CS, ""); n = w*NR;
+      for (y=1;y<NR;y++)
+        for(x=1;x<w;x++) {
+          P2h[T[x+1,y],T[x,y]]++
+          P2v[T[x,y+1],T[x,y]]++
+        }
+      print "horizontal second order entropy = "entropy(P2h,(w-1)*NR)
+      print "vertical second order entropy = "entropy(P2v,w*(NR-1))
+    }' back.txt
+    horizontal second order entropy = 0.837375
+    vertical second order entropy = 0.890547

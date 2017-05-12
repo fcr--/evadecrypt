@@ -8,10 +8,10 @@ Para el reconocimiento de la imagen escribí el programa [viewer.tcl](viewer.tcl
 |-----|-----|
 | `image <fileName>` | Le indica al programa cuál es el archivo que contiene la imagen a mostrar. |
 | `output <fileName>` | Determina el archivo de texto sobre el cual se escribe la salida con los códigos de color. |
-| `p00 <x> <y>` | Indica las coordenadas del centro del círculo superior izquierdo. |
-| `pw0 <x> <y>` | Indica las coordenadas del centro del círculo superior derecho. |
-| `p0h <x> <y>` | Indica las coordenadas del centro del círculo inferior izquierdo. |
-| `pwh <x> <y>` | Indica las coordenadas del centro del círculo inferior derecho. |
+| `p00 <x> <y>` | Indica las coordenadas en píxeles del centro del círculo superior izquierdo con respecto al borde superior izquierdo de la imagen. |
+| `pw0 <x> <y>` | Indica las coordenadas en píxeles del centro del círculo superior derecho  con respecto al borde superior izquierdo de la imagen. |
+| `p0h <x> <y>` | Indica las coordenadas en píxeles del centro del círculo inferior izquierdo con respecto al borde superior izquierdo de la imagen. |
+| `pwh <x> <y>` | Indica las coordenadas en píxeles del centro del círculo inferior derecho con respecto al borde superior izquierdo de la imagen. |
 | `width <w>` | Cantidad de círculos menos 1 por cada fila. Si hay 30 círculos en una fila, se debería ingresar: `width 29` |
 | `height <h>` | Cantidad de círculos menos 1 por cada columna. |
 | `force <x> <y> <color>` | Obliga a que el círculo (x,y) se reconozca con el color indicado por parámetro. Las cordenadas hacen referencia a los círculos y no a los píxeles de la imagen (0,0) siendo el círculo superior izquierdo y (1,0) el que está a su derecha. |

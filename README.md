@@ -3,6 +3,8 @@ Trying to decipher a text encoded in a color matrix
 
 Frecuencias de los colores:
 
+    awk '{for(i=1;i<=length;i++){C[substr($0,i,1)]++}}END{for(k in C)print C[k],k}' < back.txt | sort -nr
+
 | Ocurrencias | Color |
 |-------------|-------|
 | 1499 | k (negro) |

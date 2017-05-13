@@ -58,13 +58,13 @@ Entropy as horizontal and vertical markov processes: [[ref]](http://math.ubbcluj
     } w=length }
     END {
       split("kmygcnor", CS, ""); n = w*NR;
-      for (y=1;y<NR;y++)
-        for(x=1;x<w;x++) {
-          P2h[T[x+1,y],T[x,y]]++
-          P2v[T[x,y+1],T[x,y]]++
+      for (y=1;y<=NR;y++)
+        for(x=1;x<=w;x++) {
+          if(x<w)P2h[T[x+1,y],T[x,y]]++
+          if(y<NR)P2v[T[x,y+1],T[x,y]]++
         }
       print "horizontal second order entropy = "entropy(P2h,(w-1)*NR)
       print "vertical second order entropy = "entropy(P2v,w*(NR-1))
     }' back.txt
-    horizontal second order entropy = 0.837375
-    vertical second order entropy = 0.890547
+    horizontal second order entropy = 0.843335
+    vertical second order entropy = 0.900969
